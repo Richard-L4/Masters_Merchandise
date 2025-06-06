@@ -97,12 +97,18 @@ WSGI_APPLICATION = 'masters_merchandise.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.sqlite3',
-#        'NAME': BASE_DIR / 'db.sqlite3',
-#    }
-#}
+# Set default DATABASE_URL environment variable if not already set
+os.environ.setdefault(
+    "DATABASE_URL",
+    "postgresql://neondb_owner:npg_IidRAmuq8V1w@ep-plain-wildflower-a28u503p.eu-central-1.aws.neon.tech/spur_hash_wind_909163"
+)
+
+DATABASES = {
+    'default': dj_database_url.parse(os.environ["DATABASE_URL"])
+}
+
+
+
 
 
 # Password validation
